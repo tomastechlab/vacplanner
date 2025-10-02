@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventController!{% endblock %}
+
+{% block body %}
+    <div class="form_create_header d-flex justify-content-center p-4">
+        <h2>Erstelle eine Veranstaltung</h2>
+    </div>
+    <div class="form_create_body d-grid justify-content-center">
+        {{ form_start(eventForm) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(eventForm.title, {
+                    label: 'Wie heißt deine Veranstaltung? '
+                }) }} von {{ app.user.name }}
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(eventForm.description, {
+                            label: 'Beschreibe kurz deine Veranstaltung? ',
+                        })
+                    }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="event_date_poll" id="eventDatePollLabel">Datum wird abgestimmt</label>
+                    <input type="checkbox" id="event_date_poll" name="event_date_poll"/>
+                    <div id="poll-form-container"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="checkbox" id="event_no_start" name="event_no_start"/>
+                    <label for="event_no_start" id="noStartDateLabel">Ohne Start</label>
+                    {{ form_row(eventForm.startDate, {
+                        label: 'Wann ist der Beginn? ',
+                        label_attr: {
+                            'id': 'startDateLabel'
+                        },
+                        })
+                    }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="checkbox" id="event_no_end" name="event_no_end" />
+                    <label for="event_no_end" id="noEndDateLabel">Ohne Ende</label>
+                    {{ form_row(eventForm.endDate, {
+                        label: 'Wann ist es zu ende? ',
+                        label_attr: {
+                            'id': 'endDateLabel'
+                        },
+                        })
+                    }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="checkbox" id="event_location_poll" name="event_location_poll">Ort wird abgestimmt</input>
+                    {{ form_row(eventForm.location, {
+                        label: 'Wo findet es statt? '
+                        })
+                    }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(eventForm.isPrivate, {
+                        label: 'Private Veranstaltung? '
+                        })
+                    }}
+                </div>
+            </div>
+            {# {{ form_row(eventForm.participants, {
+                    'label': 'Wer ist eingeladen? ',
+                    'label_attr': {
+                        'id': 'participantsListLabel'
+                    },
+                    'attr': {
+                        'id': 'participantsList'
+                    }
+                })
+            }} #}
+            {# {{ form_row(eventForm.lists, {
+                    label: 'Welche Listen brauchst du für deine Veranstaltung? '
+                })
+            }} #}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(eventForm.remark, {
+                            label: 'Weitere Infos zu deiner Veranstaltung? '
+                        })
+                    }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+            </div>
+        {{ form_end(eventForm) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('event_no_end').addEventListener('change', function() {
+                let endDateElement = document.getElementById('event_form_endDate');
+                event_form_endDate.disabled = !event_form_endDate.disabled;
+            });
+            document.getElementById('event_no_start').addEventListener('change', function() {
+                let startDateElement = document.getElementById('event_form_startDate');
+                event_form_startDate.disabled =!event_form_startDate.disabled;
+            });
+            {# document.getElementById('event_form_isPrivate').addEventListener('change', function() {
+                let participantsElement = document.getElementById('event_form_participants');
+                participantsElement.disabled = !participantsElement.disabled;
+            }); #}
+
+            document.getElementById('event_date_poll').addEventListener('change', function() {
+                toggleElements([
+                    '#event_form_startDate',
+                    '#event_form_endDate',
+                    '#event_no_start',
+                    '#event_no_end',
+                    '#startDateLabel',
+                    '#endDateLabel',
+                    '#noStartDateLabel',
+                    '#noEndDateLabel'
+                ]);
+            });
+
+            document.getElementById('event_location_poll').addEventListener('change', function() {
+                let locationElement = document.getElementById('event_form_location');
+                locationElement.disabled = !locationElement.disabled;
+            });
+
+            function toggleElements(elements) {
+                let elementsToHide = document.querySelectorAll(elements);
+                elementsToHide.forEach(function(element) {
+                    element.style.display != 'none' ? element.style.display = 'none' : element.style.display = 'block';
+                });
+            }
+
+        });
+    </script>
+{% endblock %}
+
+

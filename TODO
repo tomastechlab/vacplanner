@@ -1,0 +1,45 @@
+Übersicht
+- Zeitraum aus Datumsabstimmung
+- Ort aus Ortsabstimmung
+- Ergebnisse der Abstimmungen
+- ergänzende informationen/kommentare
+- link zu einkaufsliste/einkaufszettel
+- link zu zahlungsdaten
+- link zur teilnehmerliste
+- ergänzende informationen/kommentare
+
+Datumsabstimmung
+- bisherige vorschläge
+- neue vorschläge
+- abstimmung für vorschläge
+- ergebnis der abstimmung
+- ergänzende informationen/kommentare
+
+Ortsabstimmung
+- bisherige vorschläge
+- neue vorschläge
+- abstimmung für vorschläge
+
+Einkaufsliste
+- liste benötigter Artikel
+- möglichkeit zur eintragung für Position auf Einkaufsliste
+- eigene Einkaufsliste aus gewählten Positionen erzeugen
+
+Zahlungsdaten
+- link zur zahlungsdaten
+- wieviel muss ich zahlen
+- zahlungsstatus
+- (ADMIN) zahlung bestätigen
+
+Teilnehmerliste
+
+Kassensturz
+- verrechnung aller ausgaben/einnahmen
+- (ADMIN) neue ausgaben/einnahmen hinzufügen/löschen
+
+Votingsystem
+- abstimmungsfrage
+- 1-n auswahlmöglichkeiten
+- beschränkbar ob benutzer können mehrere stimmen abgeben können
+- anonyme abstimmung
+

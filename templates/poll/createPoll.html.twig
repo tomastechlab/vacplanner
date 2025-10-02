@@ -1,0 +1,45 @@
+{% block poll_create %}
+    {{ form_start(pollForm) }}
+    {% block poll_question %}
+        {{ form_row(pollForm.question) }}
+    {% endblock %}
+    {% block poll_options %}
+        <h3>Options</h3>
+        <ul id="poll-options-list"
+            data-prototype="{{ form_widget(pollForm.options.vars.prototype)|e('html_attr') }}"
+            data-widget-tags="{{ '<li></li>'|e('html_attr') }}">
+            {% for optionField in pollForm.options %}
+                <li>
+                    {{ form_widget(optionField) }}
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="add-another-option-link btn btn-secondary">Add option</button>
+        <div>
+        <button type="submit" class="btn btn-primary mt-3">Create Poll</button>
+        </div>
+    {% endblock %}
+    {% if returnRoute is defined and returnRoute %}
+        <input type="hidden" name="returnRoute" value="{{ returnRoute }}">
+    {% endif %}
+    {{ form_end(pollForm) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const addOptionButton = document.querySelector('.add-another-option-link');
+            const optionsList = document.querySelector('#poll-options-list');
+            let optionCount = optionsList.children.length;
+
+            addOptionButton.addEventListener('click', function(e) {
+                const prototype = optionsList.dataset.prototype;
+                const newOption = prototype.replace(/__name__/g, optionCount);
+                const newLi = document.createElement('li');
+                newLi.innerHTML = newOption;
+                optionsList.appendChild(newLi);
+                optionCount++;
+            });
+        });
+    </script>
+{% endblock %}

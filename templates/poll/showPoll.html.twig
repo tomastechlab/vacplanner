@@ -1,0 +1,32 @@
+{% block poll_show %}
+    <form method="post" action="/poll/vote/{{ poll.id }}">
+        {% block poll_question %}
+            <h2>{{ poll.question }}</h2>
+        {% endblock %}
+        <ul>
+        {% if poll.isMultipleChoice %}
+            {% set choiceType = 'checkbox' %}
+        {% else %}
+            {% set choiceType = 'radio' %}
+        {% endif %}
+        {% block poll_options %}
+            {% for option in poll.options|sort((a, b) => b.votes <=> a.votes) %}
+            <li class="poll_option_li">
+                <input type={{ choiceType }} name={{ option.id }}>
+                    {{ option.name }}{% if option.votes > 0 %}<span>({{ option.votes }})</span>{% endif %}
+                    {% if not poll.isAnonymous %}
+                        {% for user in option.users %}
+                            <small>{{ user.name }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </input>
+            </li>
+            {% endfor %}
+        {% endblock %}
+        </ul>
+        <button type="submit" class="btn btn-primary">Vote</button>
+    </form>
+    {% block poll_result %}
+        Total votes: {{ poll.getVoteCount() }}
+    {% endblock %}
+{% endblock %}

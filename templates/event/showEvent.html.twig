@@ -1,0 +1,48 @@
+{% block event_show %}
+    {% block event_title %}
+        <h2>{{ event.title }}</h2><small>von {{ event.creator.name }}</small>
+    {% endblock %}
+    {% block event_description %}
+    beschreibung:
+        <h3>{{ event.description }}</h3>
+    {% endblock %}
+    {% block event_dates %}
+         {% block event_start_date %}
+            {% if event.startDate %}
+                <h3>Start {{ event.startDate|date('d.m.Y H:i:s') }}</h3>
+            {% endif %}
+        {% endblock %}
+        {% block event_end_date %}
+            {% if event.endDate %}
+                <h3>Ende: {{ event.endDate|date('d.m.Y H:i:s') }}</h3>
+            {% endif %}
+        {% endblock %}
+        {% if event.startDate is null and event.endDate is null %}
+            {% if datePoll is not null %}
+                {% include 'poll/showPoll.html.twig' with { poll: datePoll} %}
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+
+    {% block event_location %}
+        Location:
+        {% if locationPoll is not null %}
+            {% include 'poll/showPoll.html.twig' with { poll: locationPoll} %}
+        {% else %}
+            <h3>{{ event.location }}</h3>
+        {% endif %}
+    {% endblock %}
+    {% block event_participants %}
+        Teilnehmer:
+        {% if event.isPrivate %}
+            <h3>
+                {% for participant in event.participants %}
+                    {{ participant.name }}
+                {% endfor %}
+            </h3>
+        {% else %}
+            Jeder ist willkommen
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}

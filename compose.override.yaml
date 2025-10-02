@@ -1,0 +1,11 @@
+
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432:5432"
+###< doctrine/doctrine-bundle ###
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
