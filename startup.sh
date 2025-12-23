@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/env bash
 docker compose up -d
 symfony server:start -d
@@ -18,8 +17,6 @@ fi
 
 echo "Done!"
 
-=======
 #!/usr/bin/bash
 docker compose up -d
 symfony server:start -d
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6

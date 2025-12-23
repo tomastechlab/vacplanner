@@ -31,12 +31,9 @@ class PollOption
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'pollOptions', cascade: ['persist'], fetch: 'EAGER')]
     private Collection $users;
 
-<<<<<<< HEAD
     #[ORM\Column]
     private ?bool $winner = null;
 
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -110,7 +107,6 @@ class PollOption
 
         return $this;
     }
-<<<<<<< HEAD
 
     public function isWinner(): ?bool
     {
@@ -123,6 +119,4 @@ class PollOption
 
         return $this;
     }
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }

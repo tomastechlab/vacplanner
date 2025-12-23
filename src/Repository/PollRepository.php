@@ -15,10 +15,7 @@ class PollRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Poll::class);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 //    /**
 //     * @return Poll[] Returns an array of Poll objects
 //     */

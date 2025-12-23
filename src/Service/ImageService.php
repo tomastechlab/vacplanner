@@ -39,11 +39,8 @@ class ImageService {
         $image->setFilename($filename);
         $image->setFilesize($uploadedFile->getSize());
         $image->setPath(self::IMAGE_UPLOAD_PATH . $galleryId . '/');
-<<<<<<< HEAD
         $uploadedFile->move($image->getPath(), $image->getFilename());
-=======
         $file = $uploadedFile->move($image->getPath(), $image->getFilename());
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
         $this->entityManagerInterface->persist($image);
 
         $gallery->addImage($image);

@@ -36,23 +36,17 @@ class ItemList
     #[ORM\ManyToMany(targetEntity: Comment::class)]
     private Collection $comments;
 
-<<<<<<< HEAD
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'itemLists')]
     private Collection $assignedUser;
 
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function __construct()
     {
         $this->items = new ArrayCollection();
         $this->comments = new ArrayCollection();
-<<<<<<< HEAD
         $this->assignedUser = new ArrayCollection();
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     }
 
     public function getId(): ?int
@@ -149,7 +143,6 @@ class ItemList
 
         return $this;
     }
-<<<<<<< HEAD
 
     /**
      * @return Collection<int, User>
@@ -174,6 +167,4 @@ class ItemList
 
         return $this;
     }
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }

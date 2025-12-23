@@ -7,7 +7,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.css';
 
-<<<<<<< HEAD
 const nameCheck = /^[-_a-zA-Z0-9]{4,22}$/;
 const tokenCheck = /^[-_/+a-zA-Z0-9]{24,}$/;
 
@@ -89,5 +88,3 @@ export function removeCsrfToken (formElement) {
 
 /* stimulusFetch: 'lazy' */
 export default 'csrf-protection-controller';
-=======
->>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
