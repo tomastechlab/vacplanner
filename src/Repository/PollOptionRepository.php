@@ -16,6 +16,7 @@ class PollOptionRepository extends ServiceEntityRepository
         parent::__construct($registry, PollOption::class);
     }
 
+<<<<<<< HEAD
     public function findWinningOption(int $pollId): PollOption
     {
         return $this->createQueryBuilder('po')
@@ -27,6 +28,8 @@ class PollOptionRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     //    /**
     //     * @return PollOption[] Returns an array of PollOption objects
     //     */

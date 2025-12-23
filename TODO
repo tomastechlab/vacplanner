@@ -43,6 +43,7 @@ Votingsystem
 - beschränkbar ob benutzer können mehrere stimmen abgeben können
 - anonyme abstimmung
 
+<<<<<<< HEAD
 Planung/Vorbereitung (ADMINS)
 - vorbereiten von Abstimmungen
 - vorbereiten von listen
@@ -51,3 +52,5 @@ Planung/Vorbereitung (ADMINS)
 - veröffentlichungsdatum für Abstimmungen
 - enddatum für Abstimmungen
 - entfernen von Kommentaren
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6

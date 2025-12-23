@@ -8,7 +8,10 @@ use App\Enum\PollTypes;
 use App\Enum\Relations;
 use App\Repository\PollOptionRepository;
 use App\Repository\PollRepository;
+<<<<<<< HEAD
 use DateTime;
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -30,8 +33,11 @@ class PollService {
         Relations $relation = Relations::GENERAL,
         int $relationId = 0,
         PollTypes $pollType = PollTypes::GENERAL,
+<<<<<<< HEAD
         ?DateTime $votingStart = null,
         ?DateTime $votingEnd = null
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     ): Poll
     {
         $relation = Relations::tryFrom($relation->value);
@@ -39,9 +45,12 @@ class PollService {
         $poll->setQuestion($question);
         $poll->setIsMultipleChoice(true);
         $poll->setIsAnonymous(false);
+<<<<<<< HEAD
         $poll->setFinished(false);
         $poll->setVotingStart($votingStart);
         $poll->setVotingEnd($votingEnd);
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
         $poll->setRelatedTo($relation->value);
         $poll->setRelatedToId($relationId);
         $poll->setPollType($pollType->value);
@@ -52,6 +61,10 @@ class PollService {
             $option->setName($optionName);
             $option->setVotes(0);
             $option->setPoll($poll);
+<<<<<<< HEAD
+=======
+            // $pollOptions[$key] = $option;
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
             $poll->addOption($option);
         }
 
@@ -61,6 +74,7 @@ class PollService {
         return $poll;
     }
 
+<<<<<<< HEAD
     public function addOption(int $pollId, string $optionName): ?PollOption
     {
         $poll = $this->getPollById($pollId);
@@ -97,6 +111,8 @@ class PollService {
         $this->entityManagerInterface->flush();
     }
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function getPollByRelation(Relations $relatedTo, int $relatedToId, null|PollTypes $pollType = null):?Poll
     {
         $poll = $this->pollRepository->findOneBy([
@@ -127,6 +143,7 @@ class PollService {
 
     public function vote(int $pollId, array $selectedOptions, UserInterface $user): void
     {
+<<<<<<< HEAD
         $poll = $this->getPollById($pollId);
         if(!$this->isVotingOpen($pollId)) return;
         if(!$this->userCanVote($poll, $user)) return;
@@ -140,12 +157,29 @@ class PollService {
             if (in_array($pollOption->getId(), $selectedOptions)) {
                 $pollOption->setVotes($pollOption->getVotes() + 1);
                 $pollOption->addUser($user);
+=======
+        if(!$poll = $this->getPollById($pollId)) {
+            throw new NotFoundHttpException('Poll not found');
+        }
+        $pollOptions = $poll->getOptions();
+
+        foreach ($pollOptions as $pollOption) {
+            $pollOption->setVotes(0);
+            foreach ($selectedOptions as $selectedOptionId) {
+                if ($pollOption->getId() == $selectedOptionId) {
+                    $pollOption->setVotes($pollOption->getVotes() + 1);
+                }
+                if(!$poll->isAnonymous()) {
+                    $pollOption->addUser($user);
+                }
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
             }
         }
 
         $this->entityManagerInterface->flush();
     }
 
+<<<<<<< HEAD
     private function userCanVote(Poll $poll, UserInterface $user): bool
     {
         if($poll->isFinished()) return false;
@@ -174,11 +208,14 @@ class PollService {
         return true;
     }
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function getPollComments(int $pollId): array
     {
         return $this->commentService->getCommentsByRelation(Relations::POLL, $pollId);
     }
 
+<<<<<<< HEAD
     public function finishPoll($pollId): PollOption
     {
         $poll = $this->getPollById($pollId);
@@ -223,4 +260,6 @@ class PollService {
         $this->entityManagerInterface->remove($poll);
         $this->entityManagerInterface->flush();
     }
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }

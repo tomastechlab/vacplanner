@@ -57,6 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Comment::class, mappedBy: 'creator')]
     private Collection $comments;
 
+<<<<<<< HEAD
     /**
      * @var Collection<int, ItemList>
      */
@@ -69,13 +70,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Item::class, mappedBy: 'assignedUser')]
     private Collection $items;
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function __construct()
     {
         $this->pollOptions = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->comments = new ArrayCollection();
+<<<<<<< HEAD
         $this->itemLists = new ArrayCollection();
         $this->items = new ArrayCollection();
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     }
 
 
@@ -253,6 +259,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+<<<<<<< HEAD
     /**
      * @return Collection<int, ItemList>
      */
@@ -307,4 +314,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }

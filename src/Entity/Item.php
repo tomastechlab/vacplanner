@@ -27,6 +27,7 @@ class Item
     #[ORM\ManyToMany(targetEntity: Comment::class)]
     private Collection $comments;
 
+<<<<<<< HEAD
     /**
      * @var Collection<int, User>
      */
@@ -37,6 +38,11 @@ class Item
     {
         $this->comments = new ArrayCollection();
         $this->assignedUser = new ArrayCollection();
+=======
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     }
 
     public function getId(): ?int
@@ -91,6 +97,7 @@ class Item
 
         return $this;
     }
+<<<<<<< HEAD
 
     /**
      * @return Collection<int, User>
@@ -115,4 +122,6 @@ class Item
 
         return $this;
     }
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }

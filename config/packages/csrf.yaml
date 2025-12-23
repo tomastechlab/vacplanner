@@ -2,7 +2,10 @@
 framework:
     form:
         csrf_protection:
+<<<<<<< HEAD
             enabled: true
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
             token_id: submit
 
     csrf_protection:

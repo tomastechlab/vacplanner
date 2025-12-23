@@ -51,7 +51,10 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+<<<<<<< HEAD
             'csrf_token' => 'registration_token'
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
         ]);
     }
 }

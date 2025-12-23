@@ -39,6 +39,7 @@ class Poll
     #[ORM\Column(length: 255)]
     private ?string $pollType = null;
 
+<<<<<<< HEAD
     #[ORM\Column]
     private ?bool $finished = null;
 
@@ -48,6 +49,8 @@ class Poll
     #[ORM\Column(nullable: true)]
     private ?\DateTime $votingEnd = null;
 
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -168,6 +171,7 @@ class Poll
 
         return $this;
     }
+<<<<<<< HEAD
 
     public function isFinished(): ?bool
     {
@@ -204,4 +208,6 @@ class Poll
 
         return $this;
     }
+=======
+>>>>>>> ae5afe9df6bba8cff89586d0da02ca0c97c284e6
 }
