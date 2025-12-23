@@ -37,9 +37,6 @@ class Item
     {
         $this->comments = new ArrayCollection();
         $this->assignedUser = new ArrayCollection();
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int

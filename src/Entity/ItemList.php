@@ -98,7 +98,7 @@ class ItemList
         return $this->items;
     }
 
-    public function addItem(ItemListItem $item): static
+    public function addItem(Item $item): static
     {
         if (!$this->items->contains($item)) {
             $this->items->add($item);
@@ -108,7 +108,7 @@ class ItemList
         return $this;
     }
 
-    public function removeItem(ItemListItem $item): static
+    public function removeItem(Item $item): static
     {
         if ($this->items->removeElement($item)) {
             // set the owning side to null (unless already changed)
