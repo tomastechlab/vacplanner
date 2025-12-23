@@ -1,0 +1,8 @@
+{% block comment_create %}
+    {% block comment_create_text %}
+        <input type="text" id="comment_text" name="comment_text" name="text" required />
+    {% endblock %}
+    {% block comment_create_submit %}
+        <a href="{{ path('app_comment_create', {'event': event.id}) }}" class="btn btn-primary">Kommentieren</a>
+    {% endblock %}
+{% endblock %}

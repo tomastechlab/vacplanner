@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}This Gallery is empty!{% endblock %}
+
+{% block body %}
+This Gallery is empty! be the first to upload some images!
+<a href="{{ path('app_gallery_image_upload', { 'galleryId': galleryId }) }}">BE THE FIRST TO UPLOAD!</a>
+{% endblock %}

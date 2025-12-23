@@ -1,0 +1,14 @@
+{% block comment_show %}
+    {% for comment in comments %}
+        <div class="comment_container">
+            <div class="comment_author">{{ comment.creator.first }}</div>
+            <div class="comment_date">{{ comment.datetime|date('d.m.Y H:i:s') }}</div>
+            <div class="comment_text">{{ comment.text }}</div>
+        </div>
+    {% else %}
+        <p>Keine Kommentare vorhanden.</p>
+        <p>Schreibe den ersten Kommentar</p>
+    {% endfor %}
+    {{ include('comment/createComment.html.twig') }}
+
+{% endblock %}

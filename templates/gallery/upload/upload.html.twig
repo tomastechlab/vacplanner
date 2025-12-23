@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image Upload{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+    {{ form_row(form.image) }}
+
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+{{ form_end(form) }}
+{% endblock %}

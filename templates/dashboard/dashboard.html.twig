@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hallo {{ app.user.name }}!{% endblock %}
+
+{% block body %}
+    <h1>Hallo {{ app.user.name }}!</h1>
+    <h2>Aktuelle Events</h2> <a href="{{ path('app_event_create') }}" class="btn btn-primary">Neues Event erstellen</a>
+    <div class="current_events row g-4 py-5 row-cols-1 row-cols-lg-3">
+        {% for event in currentActiveEvents %}
+            {% if event.creator.id == app.user.id or app.user in event.participants %}
+                <div class="current_event feature col ">
+                    <div class="fs-2 text-body-emphasis">{{ event.title }}</div>
+                    <small>Von: {{ event.creator.name }}</small>
+                    <p>{{ event.description }}</p>
+                    {% if event.startDate %}
+                        <div>Beginn: {{ event.startDate|date('d.m.Y H:i:s') }}</div>
+                    {% else %}
+                        <div>Ohne Start</div>
+                    {% endif %}
+                    {% if event.endDate %}
+                        <div>Ende: {{ event.endDate|date('d.m.Y H:i:s') }}</div>
+                    {% else %}
+                        <div>Ohne Ende</div>
+                    {% endif %}
+                    <div>Wo: {{ event.location }}</div>
+                    <div>Wer:
+                        {% if event.isPrivate %}
+                            {% for participant in event.participants %}
+                                {{ participant.name }}
+                                {% if not loop.last %}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            Jeder ist willkommen
+                        {% endif %}
+                    </div>
+                    {% if event.lists %}
+                        <div>Listen zu diesen Event:</div>
+                        <ul>
+                            {% for list in event.lists %}
+                                <li>{{ list.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div>Sonstiges: {{ event.remark }}</div>
+                    {% if event.creator.id == app.user.id %}
+                        <div class="dashboard_event_actions">
+                            <a class="dashboard_event_action_finish" href="{{ path('app_event_finish', { eventId: event.id }) }}" alt="Beenden">{{ ux_icon('bi:flag-fill', { style: 'height: 1em; padding-left: 1em;' }) }}</a>
+                            <a class="dashboard_event_action_edit" href="{{ path('app_event_edit', { eventId: event.id }) }}" alt="Bearbeiten">{{ ux_icon('bi:pen', { style: 'height: 1em; padding-left: 1em;' }) }}</a>
+                            <a class="dashboard_event_action_delete" href="{{ path('app_event_delete', { eventId: event.id }) }}" alt="Löschen">{{ ux_icon('bi:x-circle', { style: 'height: 1em; padding-left: 1em;' }) }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="past_events">
+        <h2>Vergangene Events</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            {% for event in pastEvents %}
+                <div class="feature col border p-2">
+                    <div>{{ event.title }}</div>
+                    <div>Ersteller: {{ event.creator.name }}</div>
+                    <div>
+                    {% if event.startDate and event.endDate %}
+                        Zeitraum: {{ event.startDate|date('d.m.Y') }} - {{ event.endDate|date('d.m.Y') }}
+                    {% else %}
+                        {% if event.startDate %}
+                            Beginn: {{ event.startDate|date('d.m.Y  H:i:s') }}
+                        {% endif %}
+                        {% if event.endDate %}
+                            Ende: {{ event.endDate|date('d.m.Y  H:i:s') }}
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                    {% if event.eventGallery %}
+                        <div>Galerie:<a href="{{ path('app_gallery', { 'galleryId': event.eventGallery.id }) }}"><span>{{ ux_icon('bi:images', { style: 'height: 1em; padding-left: 1em;' }) }} {{ event.eventGallery.images.count }} Bild(er)</a></div>
+                    {% endif %}
+                    <div>
+
+                    {# {% if event.comments.count > 0 %} #}
+                        {# {% for comment in event.comments %}
+                            <div>Kommentar von {{ comment.creator.first.name }} am {{ comment.datetime|date('d.m.Y H:i:s') }}: <p>{{ comment.comment }}</p></div>
+                        {% endfor %} #}
+                    {# {% endif %} #}
+                        <button type="button" class="btn btn-primary">
+                            Kommentare anzeigen({{ event.comments.count }})
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

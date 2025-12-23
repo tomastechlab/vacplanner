@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <h3 class="mb-5">Register</h3>
+
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        {{ form_row(registrationForm.name, {
+                            label: 'Name',
+                            'attr': {
+                                'placeholder': 'Henry Hahn',
+                                'class': 'form-control form-control-lg'
+                            }
+                        }) }}
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        {{ form_row(registrationForm.email, {
+                            label: 'E-mail',
+                            'attr': {
+                                'placeholder': 'Henry@gbik...',
+                                'class': 'form-control form-control-lg'
+                            }
+                        }) }}
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Passwort',
+                            'attr': {
+                                'placeholder': '*********',
+                                'class': 'form-control form-control-lg'
+                            }
+                        }) }}
+                    </div>
+
+                    <div class="form-check d-flex justify-content-start mb-4">
+                    {{ form_row(registrationForm.agreeTerms, {
+                            label: 'Agree to Terms & Conditions',
+                            'attr': {
+                                'class': 'form-check-input'
+                            },
+                            'label_attr': {
+                                'class': 'form-check-label'
+                            }
+                        }) }}
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('registration_token') }}">
+
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                    <hr class="my-4">
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(registrationForm, {'render_rest': false}) }}
+
+{% endblock %}

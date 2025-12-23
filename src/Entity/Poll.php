@@ -42,6 +42,12 @@ class Poll
     #[ORM\Column]
     private ?bool $finished = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $votingStart = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $votingEnd = null;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -171,6 +177,30 @@ class Poll
     public function setFinished(bool $finished): static
     {
         $this->finished = $finished;
+
+        return $this;
+    }
+
+    public function getVotingStart(): ?\DateTime
+    {
+        return $this->votingStart;
+    }
+
+    public function setVotingStart(?\DateTime $votingStart): static
+    {
+        $this->votingStart = $votingStart;
+
+        return $this;
+    }
+
+    public function getVotingEnd(): ?\DateTime
+    {
+        return $this->votingEnd;
+    }
+
+    public function setVotingEnd(?\DateTime $votingEnd): static
+    {
+        $this->votingEnd = $votingEnd;
 
         return $this;
     }

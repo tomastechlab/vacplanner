@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GalleryController!{% endblock %}
+
+{% block body %}
+{# {{ dump(images) }} #}
+{% for image in images %}
+    <a href="{{ path('app_gallery_image_show', { 'galleryId': galleryId, 'imageId': image.id }) }}">
+        <img src="/{{ image.path }}{{ image.filename }}" width="200" alt="{{ image.filename }}">
+    </a>
+{% endfor %}
+
+{% endblock %}
