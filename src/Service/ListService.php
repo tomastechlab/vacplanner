@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\ItemList;
 use App\Entity\Item;
-use App\Entity\ItemListItem;
 use App\Enum\Relations;
 use App\Repository\ItemListRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,7 +13,6 @@ class ListService {
     public function __construct(
         private ItemListRepository $listRepository,
         private Item $itemListItemRepository,
-        private ItemListItem $itemListItemRepository,
         private CommentService $commentService,
         private EntityManagerInterface $entityManagerInterface
     )
@@ -38,9 +36,6 @@ class ListService {
     public function addItemToList(ItemList $list, string $itemName): Item
     {
         $item = new Item();
-    public function addItemToList(ItemList $list, string $itemName): ItemListItem
-    {
-        $item = new ItemListItem();
         $item->setItemName($itemName);
         $item->setItemList($list);
         $this->entityManagerInterface->persist($item);

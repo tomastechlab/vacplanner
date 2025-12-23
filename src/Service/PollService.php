@@ -141,23 +141,9 @@ class PollService {
             if (in_array($pollOption->getId(), $selectedOptions)) {
                 $pollOption->setVotes($pollOption->getVotes() + 1);
                 $pollOption->addUser($user);
-        if(!$poll = $this->getPollById($pollId)) {
-            throw new NotFoundHttpException('Poll not found');
-        }
-        $pollOptions = $poll->getOptions();
-
-        foreach ($pollOptions as $pollOption) {
-            $pollOption->setVotes(0);
-            foreach ($selectedOptions as $selectedOptionId) {
-                if ($pollOption->getId() == $selectedOptionId) {
-                    $pollOption->setVotes($pollOption->getVotes() + 1);
-                }
-                if(!$poll->isAnonymous()) {
-                    $pollOption->addUser($user);
-                }
             }
         }
-
+        $this->entityManagerInterface->persist($pollOption);
         $this->entityManagerInterface->flush();
     }
 
